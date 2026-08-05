@@ -48,7 +48,7 @@ function dialogos(){
         }else if(dialogo == 2){
             textBallon('Será que consegue encontrá-los para mim?', dialogText1)
             dialogo++
-            nextbutton.src = 'imgs/BagGame/startbutton.png'
+            nextbutton.src = './imgs/BagGame/startbutton.png'
          }else if(dialogo == 3 && dog.classList.contains('lvl1')){
             BagGame()
          }
