@@ -1,0 +1,393 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+    
+}
+
+.game-board {
+    position: relative;
+    border: 1px solid black;
+
+    width: min(90vw, calc((100vh - 40px) * 16 / 9));
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+}
+.main-background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    
+}
+
+.dogplayer {
+    position: absolute;
+    width: 20%;
+    height: auto;
+    bottom: 15%;
+    left: 0%;
+    z-index: 1;
+
+}
+
+.cloud1 {
+    position: absolute;
+    width: 35%;
+    left: -30%;
+    top: 5%;
+    animation: cloud1 30s infinite linear; 
+
+    
+}
+
+.cloud2 {
+    position: absolute;
+    width: 25%;
+    left: 30%;
+    animation: cloud1 55s infinite linear;
+
+}
+
+.girlbag {
+    position: absolute;
+    width: 25%;
+    bottom: 18%;
+    left: 45%;
+    z-index: 0;
+}
+
+.fade {
+    position: absolute;
+    width: 8%;
+    height: 15%;
+    background-color: black;
+    z-index: 1;
+    opacity: 1;
+    border-radius: 360%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.fade.active {
+    animation: fade 0.5s linear;
+}
+
+.dialogbaloon-girl {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.dialogtext1 {
+    position: absolute;
+    font-size: clamp(14px, 1.5vw, 26px);
+    top: 18%;
+    left: 8%;
+    color: black;
+    font-family: "Press Start 2P", monospace;
+    z-index: 0;
+    
+    
+}
+
+.dialogtext1::after {
+    content: '|';
+    animation: digitando 500ms infite;
+}
+
+.girl-div-baloon{
+    position: absolute;
+
+    width: 32%;
+    height: 30%;
+
+    right: 3%;
+    top: 8%;
+
+    z-index: 20;
+    
+    opacity: 0;
+}
+
+.nextbutton {
+    position: absolute;
+    width: 50%;
+    right: 0;
+    top: 50%;
+}
+
+.bagGame {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.521);
+    z-index: 100;
+    padding: 5%;
+    justify-content: center;
+}
+
+.bag { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.bagImg , .startGame {
+    width: 80%;
+}
+
+.info {
+    position: absolute;
+    background-color: rgba(15, 2, 2, 0.767);
+    width: 40%;
+    justify-content: center;
+    padding: 2%;
+    text-align: center;;
+    color: white;
+    border-radius: 10%;
+    font-family: "Pixelify Sans", sans-serif;
+    font-weight: 100;
+    font-size: clamp(5px, 1.5vw, 26px);
+    z-index: 100;
+}
+
+.info h1{
+    margin-bottom: 5%;
+    color: #55a103;
+}
+
+.item {
+    position: absolute;
+    z-index: 0;
+    width: 15% ;
+}
+
+.batom {
+    top: 30%;
+    right: 28%;
+}
+
+.pente {
+    top: 35%;
+    right: 60%;
+}
+
+.espelho {
+    top: 40%;
+    right: 40%;
+}
+
+.chiclete {
+    top: 40%;
+    right: 25%;
+    z-index: 10;
+}
+
+.carteira {
+    top: 35%;
+    right: 50%;
+}
+
+.paper1 {
+    top: 38%;
+    left: 22%;
+}
+
+.paper2 {
+    top: 35%;
+    right: 28%;
+    z-index: 1;
+}
+
+.paper3 {
+
+    top: 40%;
+    left: 35%;
+}
+
+.paper4 {
+
+    width: 10%;
+    top: 45%;
+    left: 42%;
+}
+
+.paper5 {
+    left: 49%;
+    top: 36%;
+    width: 12%;
+}
+
+.paper6 {
+    top: 45%;
+    right: 30%;
+    width: 10%;
+    z-index: 10;
+}
+
+.paper7 {
+    top: 42%;
+    right: 35%;
+    width: 12%;
+    z-index: 10;
+}
+
+.paper {
+    pointer-events: none;
+}
+
+
+
+
+@keyframes digitando {
+    0%,100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    
+}
+
+@keyframes fade {
+    0% {
+        transform: translate(-50%, -50%) scale(0)
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(20)
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(0)
+    }
+}
+
+
+
+
+@keyframes cloud1 {
+    from {
+        left: -30%;
+    }
+    to {
+        left: 100%;
+    }
+}
+
+@keyframes batom-found {
+    0% {
+         top: 30%;
+         right: 28%;   
+    }
+    
+    50% {
+        top: 0%;
+        right: 41%;
+        width: 20%;
+    }
+
+    100% {
+        width: 15%;
+        top: 66%;
+		right: 64%;
+    }
+}
+
+@keyframes pente-found {
+    0% {
+        top: 35%;
+        right: 60%; 
+    }
+    
+    50% {
+        top: 0%;
+        right: 41%;
+        width: 20%;
+    }
+
+    100% {
+        width: 15%;
+        top: 66%;
+		right: 42%;
+		rotate: -17deg;
+    }
+}
+
+@keyframes espelho-found {
+    0% {
+        top: 40%;
+        right: 40%;
+    }
+    
+    50% {
+        top: 0%;
+        right: 41%;
+        width: 20%; 
+    }
+
+    100% {
+        width: 15%;
+        top: 66%;
+		right: 22%;
+		rotate: -15deg;
+    }
+}
+
+
+@keyframes chiclete-found {
+    0% {
+    top: 40%;
+    right: 25%;
+    z-index: 10;
+    }
+    
+    50% {
+        top: 0%;
+        right: 41%;
+        width: 20%; 
+    }
+
+    100% {
+        width: 15%;
+        top: 66.5%;
+        right: 53.5%;
+        z-index: 10;
+    }
+}
+
+@keyframes carteira-found {
+    0% {
+        top: 35%;
+        right: 50%;
+    }
+    
+    50% {
+        top: 0%;
+        right: 41%;
+        width: 20%; 
+    }
+
+    100% {
+        width: 15%;
+        top: 66%;
+        right: 32.5%;
+    }
+}
+
+

@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    
+}
+
+.game-board {
+    position: relative;
+    border: 1px solid black;
+    width: 90%;
+    height: 100%;
+}
+
+.main-background{
+    width: 100%;
+    height: 100%;
+    
+
+}
+
+.main {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.733);
+    top: 0;
+    justify-content: center;
+    overflow: hidden;
+    align-items: center;
+}
+
+.texts {
+    position: absolute;
+    width: 40%;
+    height: auto;
+    top: -100%;
+    color: white;
+    font-family: "Press Start 2P", monospace;
+    text-align: center;
+}
+
+.active {
+    animation: credits 20s infinite linear;
+}
+
+.texts h2 {
+    color: white;
+    font-size: clamp(60px, 2.5vw, 26px);
+    margin: 5%;
+    font-family: "Squada One", sans-serif;
+    font-weight: 100;
+}
+
+.texts p {
+    font-size: clamp(40px, 2.5vw, 26px);
+    margin: 2%;
+    color: rgb(158, 158, 157);
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+h1 {
+    font-size: clamp(80px, 2.5vw, 26px);
+    
+}
+
+.form {
+    display: none;
+    flex-direction: column;
+    width: 40%;
+    height: 40%;
+    background-color: rgb(56, 56, 56);
+    align-items: center;
+    border-radius: 50px;
+    padding: 2%;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 2px 8px 0px;
+}
+
+.form h1 {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+}
+
+.form input {
+    width: 70%;
+    height: 20%;
+    border-radius: 20px;
+    padding: 1%;
+    border: none;
+    font-size: 20px;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.24);
+    color: white;
+    margin: 5% 0 5% 0;
+}
+
+.form button {
+    width: 70%;
+    border-radius: 20px;
+    border: none;
+    font-size: 30px;
+    background-color: rgb(36, 192, 101);
+}
+
+.form p {
+    margin-top: 5%;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+
+}
+
+@keyframes credits {
+    0% {
+        top: 100%;
+    }
+
+    100% {
+        top: -115%;
+    }
+}
+

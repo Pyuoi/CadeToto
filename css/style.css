@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    
+}
+
+.game-board {
+    position: relative;
+    border: 1px solid black;
+    width: 90%;
+    height: 100%;
+}
+
+.main-background{
+    width: 100%;
+    height: 100%;
+    
+
+}
+.click-zone {
+    position: absolute;
+    top: 0;
+    width: 33.3%;
+    height: 16%;
+    border-radius: 70px;
+    background-color: transparent;
+    cursor: pointer;
+
+}
+
+.esq {
+    top: 78.5%;
+    left: 15.5%;
+}
+
+.dir {
+    top: 78.5%;
+    right: 15.5%;
+
+}
+
+
+
+
