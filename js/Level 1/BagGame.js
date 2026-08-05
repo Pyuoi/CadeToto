@@ -78,7 +78,7 @@ function BagGame(){
                         dialogDivbaloon.style.display = 'flex'
                         dog.classList.remove('lvl1')
                         dog.classList.add('lvl2')
-                        nextbutton.src = '../imgs/nextButton.png';
+                        nextbutton.src = './imgs/nextButton.png';
                         textBallon('Muito obrigado cachorrinho! Com sua ajuda eu consegui ver o fundo da minha bolsa', dialogText1)
                         
                         let dialogo = 1
@@ -99,7 +99,7 @@ function BagGame(){
                                 dog.style.bottom = '15%';
                                 girlbag.style.opacity = 1;
                                 background.src = './imgs/scane1.png'
-                                window.location.href = '../FinalLevel/final.html'
+                                window.location.href = './FinalLevel/final.html'
 
 
 
