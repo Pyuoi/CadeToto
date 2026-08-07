@@ -10,7 +10,7 @@ const DivNotas = document.querySelectorAll(".nota")
 const intervalo = setTimeout(() =>{
     credit.style.display = 'none';
     form.style.display = 'flex'
-}, 2)
+}, 20000)
 
 DivNotas.forEach((item) => {
     item.addEventListener('click', () =>{
