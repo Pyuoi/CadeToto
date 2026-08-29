@@ -7,6 +7,16 @@ const nextbutton = document.getElementById('nextbutton')
 
 const background = document.getElementById('background')
 
+const DivTutorial = document.getElementById('DivTutorial')
+const CloseTutorial = document.getElementById('CloseTutorial')
+
+
+CloseTutorial.addEventListener('click', () =>{
+    DivTutorial.style.display = 'none';
+    dog.classList.add('WalkTrue');
+})
+
+
 let canPass = true
 
 function textBallon(text, div){
@@ -37,6 +47,8 @@ function textBallon(text, div){
 let join = false
 
 function dialogos(){
+    
+    arrow_lady.style.display = 'none';
 
     textBallon('Olá, cachorrinho!', dialogText1)
     let dialogo = 1
