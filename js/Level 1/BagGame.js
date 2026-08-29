@@ -88,14 +88,14 @@ function BagGame(){
                     dog.classList.remove('lvl1')
                     dog.classList.add('lvl2')
                     nextbutton.src = './imgs/nextButton.png';
-                    textBallon('Muito obrigado cachorrinho! Com sua ajuda eu consegui ver o fundo da minha bolsa', dialogText1)
+                    textBallon('Muito obrigado cachorrinho! Com sua ajuda eu consegui achar meus pertences!', dialogText1)
                 
                 let dialogo = 1
                 nextbutton.addEventListener('click', () =>{
 
                     if(dialogo == 1){
                         dialogo++;
-                        textBallon('inclusive, seu dono estava te proucurando, ele acabou de passar aqui', dialogText1)
+                        textBallon('Inclusive, seu dono estava te procurando, ele acabou de passar aqui', dialogText1)
                     }else if( dialogo == 2){
                         dialogo++;
                         textBallon('Ele foi reto e virou a próxima direita', dialogText1)
