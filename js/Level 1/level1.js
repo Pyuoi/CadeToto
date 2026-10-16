@@ -10,10 +10,15 @@ const background = document.getElementById('background')
 const DivTutorial = document.getElementById('DivTutorial')
 const CloseTutorial = document.getElementById('CloseTutorial')
 
+const ambientSong = document.getElementById('ambientSong')
+
 
 CloseTutorial.addEventListener('click', () =>{
     DivTutorial.style.display = 'none';
     dog.classList.add('WalkTrue');
+    ambientSong.volume = 0.2;
+    ambientSong.play();
+    
 })
 
 
