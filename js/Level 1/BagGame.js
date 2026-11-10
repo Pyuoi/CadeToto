@@ -108,7 +108,7 @@ function BagGame(){
                         girlbag.style.opacity = 1;
                         background.src = './imgs/scane1.png'
                         setTimeout(() =>{
-                            window.location.href = './FinalLevel/final.html'
+                            window.location.href = './level2.html'
                         }, 499)                   
                     }
                 })
