@@ -57,7 +57,6 @@ function iniciarJogoRotina(aoConcluir) {
     const painel = document.getElementById('painel-rotina');
     const btnComecar = document.getElementById('btn-comecar-rotina');
     const pergunta = document.getElementById('pergunta-rotina');
-    const btnOuvirPergunta = document.getElementById('btn-ouvir-pergunta');
     const trilho = document.getElementById('trilho');
     const cartasDiv = document.getElementById('cartas');
     const feedback = document.getElementById('feedback-rotina');
@@ -96,16 +95,12 @@ function iniciarJogoRotina(aoConcluir) {
         mostrarPasso();
     });
 
-    btnOuvirPergunta.addEventListener('click', () => falarEmVozAlta(pergunta.textContent));
-
     btnContinuar.addEventListener('click', () => {
-        pararVoz();
         fecharJogo(jogo);
         aoConcluir();
     });
 
     function mostrarPasso() {
-        pararVoz();
         vagas.forEach((v, i) => v.classList.toggle('atual', i === passoAtual));
         pergunta.textContent = PASSOS[passoAtual].pergunta;
     }

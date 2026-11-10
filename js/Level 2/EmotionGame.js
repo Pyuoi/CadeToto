@@ -5,7 +5,6 @@
 //  - sem tempo e sem pontuação negativa: dá pra errar quantas vezes quiser
 //  - a ordem das opções é sempre a mesma (previsível)
 //  - cada emoção tem cor + rostinho + palavra escrita
-//  - o texto pode ser ouvido em voz alta (botão 🔊)
 //  - quem controla o ritmo é a criança: só avança quando clica em "Próximo"
 
 const EMOCOES = {
@@ -59,7 +58,6 @@ function iniciarJogoEmocoes(aoConcluir) {
     const progresso = document.getElementById('progresso-emocoes');
     const cenaIcone = document.getElementById('cena-icone');
     const cenaTexto = document.getElementById('cena-texto');
-    const btnOuvirCena = document.getElementById('btn-ouvir-cena');
     const opcoesDiv = document.getElementById('opcoes');
     const feedback = document.getElementById('feedback-emocoes');
     const btnContinuar = document.getElementById('btn-continuar-emocoes');
@@ -75,14 +73,11 @@ function iniciarJogoEmocoes(aoConcluir) {
         mostrarRodada();
     });
 
-    btnOuvirCena.addEventListener('click', () => falarEmVozAlta(RODADAS[rodada].texto));
-
     btnContinuar.addEventListener('click', () => {
         rodada++;
         if (rodada < RODADAS.length) {
             mostrarRodada();
         } else {
-            pararVoz();
             fecharJogo(jogo);
             aoConcluir();
         }
@@ -101,7 +96,6 @@ function iniciarJogoEmocoes(aoConcluir) {
     function mostrarRodada() {
         const r = RODADAS[rodada];
         respondida = false;
-        pararVoz();
 
         desenharProgresso();
         cenaIcone.src = r.cena;

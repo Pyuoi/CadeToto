@@ -18,35 +18,12 @@ const balao = document.getElementById('balao');
 const fala = document.getElementById('fala');
 const btnProximo = document.getElementById('btn-proximo');
 const btnProximoImg = btnProximo.querySelector('img');
-const btnOuvirFala = document.getElementById('btn-ouvir-fala');
 
 const IMG_PROXIMO = 'imgs/nextButton.png';
 const IMG_COMECAR = 'imgs/BagGame/startbutton.png';
 
 // Se a pessoa pediu "menos movimento" no sistema, o texto aparece de uma vez e sem a transição preta
 const reduzirMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-
-// ---------- Voz (opcional): lê o texto em voz alta ----------
-const temVoz = 'speechSynthesis' in window;
-
-function falarEmVozAlta(texto) {
-    if (!temVoz) return;
-    window.speechSynthesis.cancel();
-    const voz = new SpeechSynthesisUtterance(texto);
-    voz.lang = 'pt-BR';
-    voz.rate = 0.9;
-    window.speechSynthesis.speak(voz);
-}
-
-function pararVoz() {
-    if (temVoz) window.speechSynthesis.cancel();
-}
-
-// Se o navegador não sabe falar, esconde os botões de 🔊
-if (!temVoz) {
-    document.querySelectorAll('.btn-ouvir').forEach((b) => { b.style.display = 'none'; });
-}
 
 
 // ---------- Transição (o círculo preto) ----------
@@ -110,7 +87,6 @@ function mostrarFalaAtual() {
     const ehUltima = indiceFala === falasAtuais.length - 1;
     btnProximoImg.src = ehUltima ? imagemUltimoBotao : IMG_PROXIMO;
     btnProximoImg.alt = ehUltima && imagemUltimoBotao === IMG_COMECAR ? 'Começar' : 'Próximo';
-    pararVoz();
     digitar(falasAtuais[indiceFala]);
 }
 
@@ -141,13 +117,11 @@ function proximaFala() {
     } else {
         dialogoAtivo = false;
         balao.classList.remove('visivel');
-        pararVoz();
-        aoFimDasFalas();
+            aoFimDasFalas();
     }
 }
 
 btnProximo.addEventListener('click', proximaFala);
-btnOuvirFala.addEventListener('click', () => falarEmVozAlta(textoAtual));
 fala.addEventListener('click', () => {
     if (digitando) terminarDigitacao();
 });
@@ -211,10 +185,11 @@ function iniciarFase(config) {
             background.src = config.fundoZoom;
             npc.style.opacity = 0; // o personagem já está desenhado no cenário aproximado
 
+            // O Totó fica de frente pro personagem, com as patas no mesmo chão dele
             dog.style.transform = 'scaleX(1)';
-            dog.style.width = '40%';
-            dog.style.bottom = '5%';
-            dog.style.left = '12%';
+            dog.style.width = '28%';
+            dog.style.bottom = '14.5%';
+            dog.style.left = '16%';
 
             iniciarDialogo(config.falasInicio, () => {
                 config.iniciarJogo(terminarJogo);

@@ -96,7 +96,6 @@
 }
 
 .btn-img:focus-visible,
-.btn-ouvir:focus-visible,
 .opcao:focus-visible,
 .carta:focus-visible {
     outline: 0.4cqw solid #1d6fd1;
@@ -108,31 +107,6 @@
     width: 50%;
     right: 0;
     top: 46%;
-}
-
-/* Botão de ouvir a fala em voz alta */
-.btn-ouvir {
-    width: 4cqw;
-    height: 4cqw;
-    min-width: 28px;
-    min-height: 28px;
-    font-size: max(13px, 2cqw);
-    line-height: 1;
-    color: #3b2a1a;
-    background: #ffd966;
-    border: 0.3cqw solid #3b2a1a;
-    border-radius: 0.8cqw;
-    cursor: pointer;
-}
-
-.btn-ouvir:hover {
-    background: #fff2b3;
-}
-
-.balao .btn-ouvir {
-    position: absolute;
-    left: 7%;
-    bottom: 16%;
 }
 
 /* ---------- Minijogo (tela escura + painel) ---------- */
@@ -341,11 +315,6 @@
     gap: 1.2cqw;
     margin: 0.4cqw 0 1cqw;
     font-weight: 600;
-}
-
-.pergunta .btn-ouvir {
-    width: 3.4cqw;
-    height: 3.4cqw;
 }
 
 .trilho {
