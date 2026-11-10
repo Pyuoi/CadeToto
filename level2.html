@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style-lvl1.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/minigames.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Cadê ToTó? - Fase 2</title>
+</head>
+<body>
+    <div class="game-board" style="--npc-x: 56%;">
+        <div class="tutorial" id="DivTutorial">
+            <img src="imgs/info.png" alt="Como jogar: W ou seta para a direita anda para a direita. S ou seta para a esquerda anda para a esquerda." class="infoImg">
+            <img src="imgs/BagGame/startbutton.png" alt="Começar" class="CloseTutorial" id="CloseTutorial">
+        </div>
+
+        <img src="imgs/scane1.png" alt="" class="main-background" id="background">
+        <img src="imgs/dog.png" alt="Totó" class="dogplayer lvl2" id="dog-player">
+        <img src="imgs/nuvem.png" alt="" class="cloud1">
+        <img src="imgs/nuvem.png" alt="" class="cloud2">
+        <img src="imgs/seta.png" alt="" class="seta" id="seta">
+        <img src="imgs/Level2/teo.png" alt="Teo" class="npc" id="npc">
+        <div class="fade" id="fade"></div>
+
+        <!-- Balão de fala -->
+        <div class="balao" id="balao">
+            <img src="imgs/dialogbaloon.png" class="balao-fundo" alt="">
+            <p class="fala" id="fala" aria-live="polite"></p>
+            <button type="button" class="btn-ouvir" id="btn-ouvir-fala" aria-label="Ouvir a fala em voz alta">🔊</button>
+            <button type="button" class="btn-img balao-proximo" id="btn-proximo"><img src="imgs/nextButton.png" alt="Próximo"></button>
+        </div>
+
+        <!-- Minijogo: como o Teo se sente? -->
+        <div class="jogo" id="jogo-emocoes">
+            <div class="painel" id="painel-emocoes">
+                <div class="instrucoes">
+                    <h2>Como Jogar?</h2>
+                    <p>O Teo vai contar o que aconteceu com ele. Olhe os rostinhos e escolha o que mostra como ele se sente.</p>
+                    <p>Não tem pressa e não tem tempo. Se errar, é só tentar de novo!</p>
+                    <button type="button" class="btn-img" id="btn-comecar-emocoes"><img src="imgs/BagGame/startbutton.png" alt="Começar"></button>
+                </div>
+
+                <h2>Como o Teo está se sentindo?</h2>
+                <div class="progresso" id="progresso-emocoes"></div>
+                <div class="cena">
+                    <img class="cena-icone" id="cena-icone" src="" alt="">
+                    <p class="cena-texto" id="cena-texto"></p>
+                    <button type="button" class="btn-ouvir" id="btn-ouvir-cena" aria-label="Ouvir a frase em voz alta">🔊</button>
+                </div>
+                <div class="opcoes" id="opcoes"></div>
+                <div class="rodape">
+                    <p class="feedback" id="feedback-emocoes" aria-live="polite"></p>
+                    <button type="button" class="btn-img btn-continuar" id="btn-continuar-emocoes"><img src="imgs/nextButton.png" alt="Próximo"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio src="sons/gem-waltz.wav" id="ambientSong" loop></audio>
+    <script src="js/MovePlayer.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/Level 2/EmotionGame.js"></script>
+    <script src="js/Level 2/level2.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style-lvl1.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/minigames.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Cadê ToTó? - Fase 3</title>
+</head>
+<body>
+    <div class="game-board" style="--npc-x: 60%;">
+        <div class="tutorial" id="DivTutorial">
+            <img src="imgs/info.png" alt="Como jogar: W ou seta para a direita anda para a direita. S ou seta para a esquerda anda para a esquerda." class="infoImg">
+            <img src="imgs/BagGame/startbutton.png" alt="Começar" class="CloseTutorial" id="CloseTutorial">
+        </div>
+
+        <img src="imgs/scane1.png" alt="" class="main-background" id="background">
+        <img src="imgs/dog.png" alt="Totó" class="dogplayer lvl3" id="dog-player">
+        <img src="imgs/nuvem.png" alt="" class="cloud1">
+        <img src="imgs/nuvem.png" alt="" class="cloud2">
+        <img src="imgs/seta.png" alt="" class="seta" id="seta">
+        <img src="imgs/Level3/rosa.png" alt="Dona Rosa" class="npc" id="npc">
+        <div class="fade" id="fade"></div>
+
+        <!-- Balão de fala -->
+        <div class="balao" id="balao">
+            <img src="imgs/dialogbaloon.png" class="balao-fundo" alt="">
+            <p class="fala" id="fala" aria-live="polite"></p>
+            <button type="button" class="btn-ouvir" id="btn-ouvir-fala" aria-label="Ouvir a fala em voz alta">🔊</button>
+            <button type="button" class="btn-img balao-proximo" id="btn-proximo"><img src="imgs/nextButton.png" alt="Próximo"></button>
+        </div>
+
+        <!-- Minijogo: a rotina do dono do Totó -->
+        <div class="jogo" id="jogo-rotina">
+            <div class="painel" id="painel-rotina">
+                <div class="instrucoes">
+                    <h2>Como Jogar?</h2>
+                    <p>Vamos colocar a rotina do dono do Totó em ordem. Clique no cartão que acontece primeiro, depois no que vem em seguida.</p>
+                    <p>Não tem pressa e não tem tempo. Se errar, é só tentar outro cartão!</p>
+                    <button type="button" class="btn-img" id="btn-comecar-rotina"><img src="imgs/BagGame/startbutton.png" alt="Começar"></button>
+                </div>
+
+                <h2>A rotina do dono do Totó</h2>
+                <div class="pergunta">
+                    <p id="pergunta-rotina"></p>
+                    <button type="button" class="btn-ouvir" id="btn-ouvir-pergunta" aria-label="Ouvir a pergunta em voz alta">🔊</button>
+                </div>
+                <div class="trilho" id="trilho"></div>
+                <div class="cartas" id="cartas"></div>
+                <div class="rodape">
+                    <p class="feedback" id="feedback-rotina" aria-live="polite"></p>
+                    <button type="button" class="btn-img btn-continuar" id="btn-continuar-rotina"><img src="imgs/nextButton.png" alt="Próximo"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio src="sons/gem-waltz.wav" id="ambientSong" loop></audio>
+    <script src="js/MovePlayer.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/Level 3/RoutineGame.js"></script>
+    <script src="js/Level 3/level3.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+</html>

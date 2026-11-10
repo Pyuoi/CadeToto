@@ -1,0 +1,449 @@
+/* ===== Estilos das fases 2 e 3 (Cadê ToTó?) =====
+   Este arquivo vem DEPOIS do style-lvl1.css, que já cuida do tabuleiro,
+   do cachorro, das nuvens, do tutorial e do "fade". Aqui ficam só as coisas novas:
+   personagem, balão de fala e os minijogos.
+
+   Todas as medidas usam "cqw" (1cqw = 1% da LARGURA do tabuleiro),
+   assim o jogo inteiro aumenta e diminui junto com a janela. */
+
+.game-board {
+    container-type: inline-size;
+}
+
+/* ---------- Cena ---------- */
+.npc {
+    position: absolute;
+    width: 25%;
+    bottom: 18%;
+    left: var(--npc-x, 55%);
+    z-index: 0;
+}
+
+/* Setinha que aponta pro personagem: flutua devagar (sem piscar) */
+.seta {
+    position: absolute;
+    width: 15%;
+    bottom: 44%;
+    left: calc(var(--npc-x, 55%) + 5%);
+    animation: flutuar 2.4s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8%); }
+}
+
+/* O círculo preto da transição fica por cima de tudo (menos do menu) e é um pouco mais lento */
+.fade {
+    z-index: 60;
+}
+
+.fade.active {
+    animation: fade 0.9s ease-in-out;
+}
+
+/* ---------- Balão de fala ---------- */
+.balao {
+    position: absolute;
+    display: none;
+    width: 38%;
+    aspect-ratio: 1400 / 686;
+    right: 3%;
+    top: 6%;
+    z-index: 20;
+}
+
+.balao.visivel {
+    display: block;
+}
+
+.balao-fundo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.fala {
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    top: 9%;
+    height: 50%;
+    overflow: hidden;
+    font-family: "Pixelify Sans", "Trebuchet MS", sans-serif;
+    font-size: max(11px, 1.7cqw);
+    line-height: 1.3;
+    color: #3b2a1a;
+    cursor: pointer;
+}
+
+/* Botões que são só uma imagem (Próximo / Começar) */
+.btn-img {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btn-img img {
+    display: block;
+    width: 100%;
+}
+
+.btn-img:hover img {
+    filter: brightness(1.1);
+}
+
+.btn-img:focus-visible,
+.btn-ouvir:focus-visible,
+.opcao:focus-visible,
+.carta:focus-visible {
+    outline: 0.4cqw solid #1d6fd1;
+    outline-offset: 0.3cqw;
+}
+
+.balao-proximo {
+    position: absolute;
+    width: 50%;
+    right: 0;
+    top: 46%;
+}
+
+/* Botão de ouvir a fala em voz alta */
+.btn-ouvir {
+    width: 4cqw;
+    height: 4cqw;
+    min-width: 28px;
+    min-height: 28px;
+    font-size: max(13px, 2cqw);
+    line-height: 1;
+    color: #3b2a1a;
+    background: #ffd966;
+    border: 0.3cqw solid #3b2a1a;
+    border-radius: 0.8cqw;
+    cursor: pointer;
+}
+
+.btn-ouvir:hover {
+    background: #fff2b3;
+}
+
+.balao .btn-ouvir {
+    position: absolute;
+    left: 7%;
+    bottom: 16%;
+}
+
+/* ---------- Minijogo (tela escura + painel) ---------- */
+.jogo {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.52);
+    z-index: 100;
+}
+
+.jogo.aberto {
+    display: flex;
+}
+
+.painel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 88%;
+    height: 88%;
+    padding: 2cqw 3cqw;
+    background: #fff3c8;
+    border: 0.6cqw solid #3b2a1a;
+    border-radius: 1.2cqw;
+    box-shadow: inset 0 0 0 0.5cqw #c27a3a;
+    font-family: "Pixelify Sans", "Trebuchet MS", sans-serif;
+    color: #3b2a1a;
+    text-align: center;
+}
+
+.painel h2 {
+    font-size: max(15px, 2.8cqw);
+    font-weight: 600;
+}
+
+.painel p {
+    font-size: max(12px, 2.1cqw);
+    line-height: 1.3;
+}
+
+/* Tela "Como jogar?": fica por cima até apertar Começar */
+.instrucoes {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6cqw;
+    padding: 3cqw 6cqw;
+    background: #fff3c8;
+    border-radius: 1.2cqw;
+}
+
+.instrucoes h2 {
+    color: #3d7a2a;
+}
+
+.instrucoes .btn-img {
+    width: 30%;
+    margin-top: -2cqw;
+}
+
+.painel.jogando .instrucoes {
+    display: none;
+}
+
+/* Bolinhas de progresso */
+.progresso {
+    display: flex;
+    gap: 1cqw;
+    margin: 0.8cqw 0;
+}
+
+.ponto {
+    width: 1.8cqw;
+    height: 1.8cqw;
+    min-width: 10px;
+    min-height: 10px;
+    border: 0.25cqw solid #3b2a1a;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.ponto.feito {
+    background: #ffc93c;
+}
+
+.ponto.atual {
+    border-width: 0.4cqw;
+}
+
+/* Faixa de baixo do painel: mensagem à esquerda, botão "Próximo" à direita */
+.rodape {
+    display: flex;
+    align-items: center;
+    gap: 2cqw;
+    width: 100%;
+    min-height: 6cqw;
+    margin-top: auto;
+}
+
+.feedback {
+    flex: 1;
+    font-weight: 600;
+}
+
+.feedback.bom {
+    color: #2e6b1f;
+}
+
+/* Fica invisível (mas ocupando o lugar) até a criança acertar */
+.btn-continuar {
+    flex: none;
+    width: 20%;
+    visibility: hidden;
+}
+
+.btn-continuar.pronto {
+    visibility: visible;
+}
+
+/* ---------- Fase 2: emoções ---------- */
+.cena {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2cqw;
+    margin: 0.6cqw 0 1.4cqw;
+}
+
+.cena-icone {
+    width: 11cqw;
+    height: 11cqw;
+    object-fit: contain;
+}
+
+.cena-texto {
+    max-width: 44cqw;
+    text-align: left;
+}
+
+.opcoes {
+    display: flex;
+    justify-content: center;
+    gap: 3cqw;
+}
+
+.opcao {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6cqw;
+    width: 15cqw;
+    padding: 1cqw 1cqw 0.8cqw;
+    font-family: inherit;
+    font-size: max(12px, 2cqw);
+    font-weight: 600;
+    color: #3b2a1a;
+    background: #fff;
+    border: 0.35cqw solid #3b2a1a;
+    border-radius: 1cqw;
+    cursor: pointer;
+}
+
+.opcao img {
+    width: 9.5cqw;
+    height: 9.5cqw;
+    object-fit: contain;
+}
+
+.opcao:hover:not(:disabled) {
+    background: #fff9e0;
+}
+
+/* Resposta certa: verdinho + estrela. Nada de vermelho nem de balançar. */
+.opcao.certa {
+    background: #d8f5c8;
+    border-color: #3d7a2a;
+}
+
+.opcao.certa::after {
+    content: "⭐";
+    position: absolute;
+    top: 0.4cqw;
+    right: 0.6cqw;
+    font-size: max(14px, 2.4cqw);
+}
+
+/* Resposta que não foi dessa vez: só esmaece de leve */
+.opcao.errada {
+    opacity: 0.4;
+    cursor: default;
+}
+
+/* ---------- Fase 3: rotina ---------- */
+.pergunta {
+    display: flex;
+    align-items: center;
+    gap: 1.2cqw;
+    margin: 0.4cqw 0 1cqw;
+    font-weight: 600;
+}
+
+.pergunta .btn-ouvir {
+    width: 3.4cqw;
+    height: 3.4cqw;
+}
+
+.trilho {
+    display: flex;
+    gap: 2cqw;
+    justify-content: center;
+}
+
+.vaga-caixa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4cqw;
+    font-size: max(11px, 1.8cqw);
+}
+
+.vaga {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15cqw;
+    height: 11.5cqw;
+    border: 0.35cqw dashed #a8672d;
+    border-radius: 1cqw;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.vaga.atual {
+    border: 0.45cqw solid #1d6fd1;
+    background: #eaf3ff;
+}
+
+/* Vaga já preenchida: some a borda tracejada e a carta ocupa a vaga inteira */
+.vaga.preenchida {
+    border-color: transparent;
+    background: none;
+}
+
+.vaga .carta {
+    width: 100%;
+    height: 100%;
+}
+
+.cartas {
+    display: flex;
+    gap: 2cqw;
+    justify-content: center;
+    margin-top: 1.2cqw;
+}
+
+.carta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3cqw;
+    width: 15cqw;
+    height: 11.5cqw;
+    padding: 0.5cqw;
+    font-family: inherit;
+    font-size: max(11px, 1.8cqw);
+    font-weight: 600;
+    line-height: 1.1;
+    color: #3b2a1a;
+    background: #fff;
+    border: 0.35cqw solid #3b2a1a;
+    border-radius: 1cqw;
+    cursor: pointer;
+}
+
+.carta img {
+    width: 5.6cqw;
+    height: 5.6cqw;
+    object-fit: contain;
+}
+
+.carta:hover:not(:disabled) {
+    background: #fff9e0;
+}
+
+/* Carta já colocada na sequência */
+.carta.colocada {
+    cursor: default;
+    background: #d8f5c8;
+    border-color: #3d7a2a;
+}
+
+.carta.errada {
+    opacity: 0.45;
+}
+
+/* ---------- Quem prefere menos movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .seta {
+        animation: none;
+    }
+
+    .fade.active {
+        animation: none;
+    }
+}
