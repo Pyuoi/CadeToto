@@ -48,8 +48,8 @@
     display: none;
     width: 38%;
     aspect-ratio: 1400 / 686;
-    right: 3%;
-    top: 6%;
+    right: 6%;
+    top: 3%;
     z-index: 20;
 }
 
@@ -95,7 +95,16 @@
     filter: brightness(1.1);
 }
 
-.btn-img:focus-visible,
+/* Botões que são imagem têm bastante espaço transparente em volta, então nada de contorno
+   quadrado: quando focados (teclado), a própria imagem só fica um pouco mais clara. */
+.btn-img:focus {
+    outline: none;
+}
+
+.btn-img:focus-visible img {
+    filter: brightness(1.15) drop-shadow(0 0 0.3cqw #ffffff);
+}
+
 .opcao:focus-visible,
 .carta:focus-visible {
     outline: 0.4cqw solid #1d6fd1;
