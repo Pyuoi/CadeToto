@@ -105,8 +105,8 @@
 .balao-proximo {
     position: absolute;
     width: 50%;
-    right: 0;
-    top: 46%;
+    right: 1%;
+    top: 29%;
 }
 
 /* ---------- Minijogo (tela escura + painel) ---------- */
