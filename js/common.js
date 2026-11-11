@@ -187,9 +187,9 @@ function iniciarFase(config) {
 
             // O Totó fica de frente pro personagem, com as patas no mesmo chão dele
             dog.style.transform = 'scaleX(1)';
-            dog.style.width = '25%';
-            dog.style.bottom = '22.5%';
-            dog.style.left = '14%';
+            dog.style.width = '28%';
+            dog.style.bottom = '14.5%';
+            dog.style.left = '16%';
 
             iniciarDialogo(config.falasInicio, () => {
                 config.iniciarJogo(terminarJogo);
