@@ -1,41 +1,54 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    
+    overflow: hidden;
 }
 
+/* Mesmo tamanho de tabuleiro das fases: sempre 16:9 e cabe inteiro na janela */
 .game-board {
     position: relative;
     border: 1px solid black;
-    width: 90%;
-    height: 100%;
+    width: min(90vw, calc((100vh - 40px) * 16 / 9));
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
 }
 
-.main-background{
+.main-background {
+    position: absolute;
     width: 100%;
     height: 100%;
-    
-
+    object-fit: fill;
 }
+
+/* As zonas de clique ficam em cima dos botões desenhados na imagem */
 .click-zone {
     position: absolute;
-    top: 0;
+    display: block;
     width: 33.3%;
     height: 16%;
+    border: 0;
     border-radius: 70px;
     background-color: transparent;
     cursor: pointer;
+}
 
+.click-zone:focus {
+    outline: none;
+}
+
+.click-zone:focus-visible {
+    outline: 4px solid #ffffff;
+    box-shadow: 0 0 0 8px #3b2a1a;
 }
 
 .esq {
@@ -46,9 +59,60 @@ body{
 .dir {
     top: 78.5%;
     right: 15.5%;
-
 }
 
+/* ---------- Despedida ---------- */
+.adeus {
+    position: absolute;
+    inset: 0;
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+}
 
+.adeus.aberto {
+    display: flex;
+}
 
+.adeus-caixa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 70%;
+    padding: 28px 36px;
+    text-align: center;
+    font-family: "Pixelify Sans", "Trebuchet MS", sans-serif;
+    color: #3b2a1a;
+    background: #fff3c8;
+    border: 4px solid #3b2a1a;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 4px #c27a3a;
+}
 
+.adeus-caixa h2 {
+    font-size: 30px;
+    color: #3d7a2a;
+}
+
+.adeus-caixa p {
+    font-size: 20px;
+}
+
+.adeus-caixa button {
+    padding: 10px 28px;
+    font-family: inherit;
+    font-size: 20px;
+    color: #3b2a1a;
+    background: #ffd966;
+    border: 3px solid #3b2a1a;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.adeus-caixa button:hover,
+.adeus-caixa button:focus-visible {
+    background: #fff2b3;
+}

@@ -1,174 +1,265 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    
+    overflow: hidden;
 }
 
+/* Mesmo tabuleiro 16:9 das fases. As medidas usam "cqw" (1% da largura do tabuleiro). */
 .game-board {
     position: relative;
     border: 1px solid black;
-    width: 90%;
-    height: 100%;
+    width: min(90vw, calc((100vh - 40px) * 16 / 9));
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    container-type: inline-size;
 }
 
-.main-background{
+.main-background {
+    position: absolute;
     width: 100%;
     height: 100%;
-    
-
+    object-fit: fill;
 }
 
 .main {
     position: absolute;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.733);
-    top: 0;
-    justify-content: center;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.86);
     overflow: hidden;
+}
+
+/* Cada "tela" (estrelas, créditos, nota) ocupa o tabuleiro inteiro; só uma aparece por vez */
+.tela {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+.tela.visivel {
+    display: flex;
+}
+
+/* ---------- Botões ---------- */
+.botao {
+    padding: 0.8cqw 3cqw;
+    font-family: "Pixelify Sans", "Trebuchet MS", sans-serif;
+    font-size: max(16px, 2.4cqw);
+    font-weight: 600;
+    color: #3b2a1a;
+    background: #ffd966;
+    border: 0.3cqw solid #fff;
+    border-radius: 1.2cqw;
+    cursor: pointer;
+}
+
+.botao:hover:not(:disabled),
+.botao:focus-visible {
+    background: #fff2b3;
+    outline: none;
+}
+
+.botao:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.botao.secundario {
+    margin-top: 1.4cqw;
+    font-size: max(13px, 1.7cqw);
+    color: #fff;
+    background: transparent;
+    border-width: 0.2cqw;
+}
+
+.botao.secundario:hover:not(:disabled),
+.botao.secundario:focus-visible {
+    color: #3b2a1a;
+}
+
+/* ---------- 1) Recompensa ---------- */
+.recompensa {
+    gap: 2.4cqw;
+    padding: 4cqw;
+    text-align: center;
+    color: #fff;
+    font-family: "Pixelify Sans", "Trebuchet MS", sans-serif;
+}
+
+.recompensa h1 {
+    font-size: max(28px, 5.4cqw);
+    color: #ffd966;
+}
+
+.recompensa p {
+    font-size: max(16px, 2.4cqw);
+}
+
+.estrelas-linha {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1cqw;
+    max-width: 70cqw;
+    font-size: max(24px, 5cqw);
+    line-height: 1;
+}
+
+.estrelas-linha .vazia {
+    filter: grayscale(1);
+    opacity: 0.3;
+}
+
+.estrelas-linha .brilha {
+    animation: brilhar 0.6s ease-out backwards;
+}
+
+@keyframes brilhar {
+    0%   { transform: scale(0.2); opacity: 0; }
+    60%  { transform: scale(1.25); }
+    100% { transform: scale(1); }
+}
+
+/* ---------- 2) Créditos ---------- */
+.creditos {
+    justify-content: flex-start;
 }
 
 .texts {
     position: absolute;
+    left: 30%;
     width: 40%;
-    height: auto;
-    top: -100%;
-    color: white;
-    font-family: "Press Start 2P", monospace;
+    top: 100%;
+    transform: translateY(0);
+    color: #fff;
     text-align: center;
+    animation: credits 28s linear forwards;
 }
 
-.active {
-    animation: credits 20s infinite linear;
+.texts h1 {
+    margin: 3cqw 0 1cqw;
+    font-family: "Squada One", sans-serif;
+    font-weight: 400;
+    font-size: 5.4cqw;
 }
 
 .texts h2 {
-    color: white;
-    font-size: clamp(60px, 2.5vw, 26px);
-    margin: 5%;
+    margin: 3.5cqw 0 1cqw;
     font-family: "Squada One", sans-serif;
-    font-weight: 100;
+    font-weight: 400;
+    font-size: 3.6cqw;
 }
 
 .texts p {
-    font-size: clamp(40px, 2.5vw, 26px);
-    margin: 2%;
-    color: rgb(158, 158, 157);
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-h1 {
-    font-size: clamp(80px, 2.5vw, 26px);
-    
+    margin: 0.8cqw 0;
+    font-family: "Squada One", sans-serif;
+    font-size: 2.6cqw;
+    color: rgb(190, 190, 188);
 }
 
+.pular {
+    position: absolute;
+    right: 2cqw;
+    bottom: 2cqw;
+    padding: 0.5cqw 2cqw;
+    font-size: max(13px, 1.8cqw);
+    z-index: 2;
+}
+
+@keyframes credits {
+    from { top: 100%; transform: translateY(0); }
+    to   { top: 0;    transform: translateY(-100%); }
+}
+
+/* ---------- 3) Nota ---------- */
 .form {
-    display: none;
-    flex-direction: column;
-    width: 40%;
-    height: auto;
+    inset: auto;
+    left: 50%;
+    top: 50%;
+    width: 58%;
+    padding: 3cqw;
+    transform: translate(-50%, -50%);
     background-color: #473320;
-    align-items: center;
-    border-radius: 50px;
-    padding: 2%;
-    box-shadow: rgba(255, 255, 255, 0.2) 0px 2px 8px 0px;
-    border:4px solid #ffffff;
+    border: 0.4cqw solid #fff;
+    border-radius: 3cqw;
+    box-shadow: rgba(255, 255, 255, 0.2) 0 2px 8px 0;
+    color: #fff;
+    text-align: center;
 }
 
 .form h1 {
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: clamp(10px, 3vw, 30px);
-    text-align: center;
-}
-
-.form input {
-    width: 70%;
-    height: 20%;
-    border-radius: 20px;
-    padding: 1%;
-    border: none;
-    font-size: 20px;
-    outline: none;
-    background-color: rgba(0, 0, 0, 0.24);
-    color: white;
-    margin: 5% 0 5% 0;
-    box-shadow: rgba(22, 17, 17, 0.2) 0px 2px 8px 0px; ;
-}
-
-.form button {
-    width: 70%;
-    border-radius: 20px;
-    padding: 2%;
-    border: none;
-    font-size: 30px;
-    background-color: #8A7352;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-
-.form .active {
-    background-color: #D4A857;
-}
-
-.form .active:hover {
-    background-color: #E1B96A;
-}
-
-.form p {
-    margin-top: 5%;
-    font-size: 30px;
-    color: white;
-    text-align: center;
-
+    font-family: "Pixelify Sans", Arial, sans-serif;
+    font-size: max(20px, 3.4cqw);
 }
 
 .div-notas {
     display: flex;
     justify-content: center;
-    margin: 5% 0 5% 0;
-    gap: 5%;
+    gap: 1.2cqw;
+    margin: 2.4cqw 0;
 }
 
 .nota {
+    min-width: 5.6cqw;
+    padding: 1cqw 1.2cqw;
+    font-family: "Pixelify Sans", Arial, sans-serif;
+    font-size: max(14px, 2.4cqw);
+    color: #fff;
     background-color: #5A4330;
-    padding: 5%;
-    border-radius: 25%;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    border: solid 2px #6b593f;
+    border: 0.25cqw solid #6b593f;
+    border-radius: 1.2cqw;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
     cursor: pointer;
 }
 
-.nota p {
-    font-size: clamp(10px, 2vw, 30px);
+.nota:hover,
+.nota:focus-visible {
+    border-color: #E5C37A;
+    outline: none;
+}
+
+.nota[aria-pressed="true"] {
+    border-color: #E5C37A;
+    background-color: #7a5b3b;
+}
+
+.form .botao {
+    width: 70%;
+}
+
+.form .botao.secundario {
+    width: auto;
 }
 
 .form .respost {
-    margin: 5% 0 1% 0;
-    font-size: clamp(2px, 2vw, 25px);
+    margin-top: 2cqw;
+    min-height: 2.6em;
+    font-family: "Pixelify Sans", Arial, sans-serif;
+    font-size: max(13px, 1.9cqw);
 }
 
-
-
-
-
-@keyframes credits {
-    0% {
-        top: 100%;
+/* ---------- Quem prefere menos movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .texts {
+        animation: none;
+        top: 8%;
+        max-height: 80%;
+        overflow-y: auto;
     }
 
-    100% {
-        top: -115%;
+    .estrelas-linha .brilha {
+        animation: none;
     }
 }
-

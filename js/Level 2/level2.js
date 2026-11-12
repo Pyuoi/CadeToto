@@ -22,5 +22,7 @@ iniciarFase({
         'Ele foi na direção da padaria da Dona Rosa. Corre lá!'
     ],
 
+    fase: 'f2',
+
     proximaPagina: 'level3.html'
 });

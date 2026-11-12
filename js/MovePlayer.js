@@ -1,32 +1,43 @@
-let posX = 0;
-const velocity = 0.2;
+// ===== Movimento do Totó =====
+// posX é a posição do Totó em % da largura da tela. Outros arquivos (common.js) olham essa variável.
 
-const dog = document.getElementById('dog-player')
+let posX = 0;
+const velocity = 12; // % da tela por segundo (assim a velocidade é igual em qualquer computador)
+
+const dog = document.getElementById('dog-player');
 
 const keys = {};
 
 window.addEventListener('keydown', (k) => {
-    keys[k.key] = true;
+    keys[k.key.toLowerCase()] = true;
+});
 
-})
+window.addEventListener('keyup', (k) => {
+    keys[k.key.toLowerCase()] = false;
+});
 
-window.addEventListener('keyup', (k) =>{
-    keys[k.key] = false;
-    
-})
+// Se a janela perder o foco com uma tecla apertada, o Totó não fica andando sozinho
+window.addEventListener('blur', () => {
+    Object.keys(keys).forEach((k) => { keys[k] = false; });
+});
 
-let skindirection = 1; 
+let ultimoQuadro = null;
 
-function move(){
-    if(dog.classList.contains('WalkTrue')){
-        if((keys['w'] || keys['ArrowRight'])  && posX < 85){posX += velocity; dog.style.transform = "scaleX(1)"}
-        if((keys['s'] || keys['ArrowLeft']) && posX > -5){posX -= velocity; dog.style.transform = "scaleX(-1)"}
+function move(agora) {
+    // segundos desde o último quadro (limitado, para não "pular" se a aba ficou parada)
+    const dt = ultimoQuadro === null ? 0 : Math.min((agora - ultimoQuadro) / 1000, 0.1);
+    ultimoQuadro = agora;
+
+    if (dog.classList.contains('WalkTrue')) {
+        const direita = keys['w'] || keys['d'] || keys['arrowright'];
+        const esquerda = keys['s'] || keys['a'] || keys['arrowleft'];
+
+        if (direita && posX < 85) { posX = Math.min(posX + velocity * dt, 85); dog.style.transform = 'scaleX(1)'; }
+        if (esquerda && posX > -5) { posX = Math.max(posX - velocity * dt, -5); dog.style.transform = 'scaleX(-1)'; }
         dog.style.left = posX + '%';
     }
 
-    requestAnimationFrame(move)
+    requestAnimationFrame(move);
 }
 
-
-
-move()
+requestAnimationFrame(move);
