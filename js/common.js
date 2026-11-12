@@ -148,6 +148,7 @@ function fecharJogo(elemento) {
 // ---------- Resumo de estrelas no fim da fase ----------
 // A criança vê quantas estrelas ganhou e clica em "Próximo" quando quiser (sem tempo).
 function mostrarResumo(fase, aoContinuar) {
+    Estrelas.ganhar(fase + '-fim'); // estrela de bônus por terminar a fase
     const ganhas = Estrelas.daFase(fase);
     const total = Estrelas.POR_FASE[fase];
 

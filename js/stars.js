@@ -15,8 +15,8 @@
 const Estrelas = (function () {
     const CHAVE = 'toto.estrelas';
 
-    // Quantas estrelas existem em cada fase (usado no resumo e na tela final)
-    const POR_FASE = { f1: 5, f2: 4, f3: 4 };
+    // Quantas estrelas existem em cada fase (as de cada objeto/rodada/passo + 1 por terminar a fase) (usado no resumo e na tela final)
+    const POR_FASE = { f1: 6, f2: 5, f3: 5 };
     const MAXIMO = Object.values(POR_FASE).reduce((a, b) => a + b, 0);
 
     const reduzirMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
