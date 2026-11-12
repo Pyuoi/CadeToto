@@ -4,7 +4,7 @@
 
 ## ⭐ Estrelas (recompensas)
 
-Cada coisa certa vale uma estrela: 5 na fase 1 (objetos da bolsa), 4 na fase 2 (emoções) e 4 na fase 3 (rotina), somando 13.
+Cada coisa certa vale uma estrela: 6 na fase 1, 5 na fase 2 e 5 na fase 3 (uma por acerto, mais uma de bônus por terminar a fase), somando 16.
 - Só ganha, nunca perde: errar não tira estrela e não tem tempo.
 - Cada estrela vale uma vez só (reiniciar a fase não repete a estrela) e fica salva no navegador.
 - O código está em `js/stars.js` e `css/estrelas.css`. Para dar uma estrela: `Estrelas.ganhar('f2-minha-estrela')` (e some o novo total em `POR_FASE`).
