@@ -5,47 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style-lvl1.css">
     <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/minigames.css">
+    <link rel="stylesheet" href="css/estrelas.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="imgs/favicon.png">
     <title>Cadê ToTó?</title>
 </head>
-<body>  
-    <div class="game-board">
+<body>
+    <div class="game-board" style="--npc-x: 45%;">
         <div class="tutorial" id="DivTutorial">
-            <img src="imgs/info.png" alt="" class="infoImg">
-            <img src="imgs/BagGame/startbutton.png" alt="" class="CloseTutorial" id="CloseTutorial">
+            <img src="imgs/info.png" alt="Como jogar: W ou seta para a direita anda para a direita. S ou seta para a esquerda anda para a esquerda." class="infoImg">
+            <img src="imgs/BagGame/startbutton.png" alt="Começar" class="CloseTutorial" id="CloseTutorial" role="button" tabindex="0">
         </div>
         <img src="imgs/scane1.png" alt="" class="main-background" id="background">
-        <img src="imgs/dog.png" alt="" class="dogplayer lvl1" id="dog-player">
+        <img src="imgs/dog.png" alt="Totó" class="dogplayer lvl1" id="dog-player">
         <img src="imgs/nuvem.png" alt="" class="cloud1">
         <img src="imgs/nuvem.png" alt="" class="cloud2">
-        <img src="imgs/seta.png" alt="" class="arrow_lady" id="arrow_lady">
-        <img src="imgs/bag-girl.png" alt="" class="girlbag" id="girlbag">
+        <img src="imgs/seta.png" alt="" class="seta" id="seta">
+        <img src="imgs/bag-girl.png" alt="Senhora Flor" class="npc" id="npc">
         <div class="fade" id="fade"></div>
        
        
-        <div class="girl-div-baloon" id="girl-div-baloon">
-            <img src="imgs/dialogbaloon.png" class="dialogbaloon-girl" id="dialogbaloon-girl" alt="">
-            <p class="dialogtext1" id="dialogtext-1"></p>
-            <img src="imgs/nextButton.png" alt="" class="nextbutton" id="nextbutton">
+        <!-- Balão de fala -->
+        <div class="balao" id="balao">
+            <img src="imgs/dialogbaloon.png" class="balao-fundo" alt="">
+            <p class="fala" id="fala" aria-live="polite"></p>
+            <button type="button" class="btn-img balao-proximo" id="btn-proximo"><img src="imgs/nextButton.png" alt="Próximo"></button>
         </div>
 
         <div class="bagGame" id="bagGame">
             <div class="bag">
                 <div class="info" id="info">
                     <h1>Como Jogar?</h1>
-                    <h2>A bolsa da Senhora Flor está cheia de objetos! Encontre apenas os itens que aparecem na barra abaixo da bolsa e arraste-os para seu devido lugar clicando com seu mouse. Será que você consegue ajudá-la?</h2>
-                    <img src="imgs/BagGame/startbutton.png" alt="" id="startGame" class="startGame">
+                    <h2>A bolsa da Senhora Flor está cheia de objetos! Encontre apenas os itens que aparecem na barra abaixo da bolsa: arraste cada um para baixo ou clique nele. Não tem pressa e não tem tempo. Será que você consegue ajudá-la?</h2>
+                    <img src="imgs/BagGame/startbutton.png" alt="Começar" id="startGame" class="startGame" role="button" tabindex="0">
                 </div>
                 <div class="DropZone" id="DropZone"></div>
-                <img src="imgs/BagGame/bag.png" alt="" class="bagImg">
+                <img src="imgs/BagGame/bag.png" alt="Bolsa da Senhora Flor" class="bagImg" draggable="false">
                 <div class="itens">
-                    <img src="imgs/BagGame/batom.png" class="item batom" alt="">
-                    <img src="imgs/BagGame/Carteira.png" class="item carteira" alt=""> 
-                    <img src="imgs/BagGame/Chiclete.png" class="item chiclete" alt="">
-                    <img src="imgs/BagGame/Espelho.png" class="item espelho" alt="">
-                    <img src="imgs/BagGame/Pente.png" class="item pente" alt="">
+                    <img src="imgs/BagGame/batom.png" class="item batom" alt="Batom" >
+                    <img src="imgs/BagGame/Carteira.png" class="item carteira" alt="Carteira" > 
+                    <img src="imgs/BagGame/Chiclete.png" class="item chiclete" alt="Chiclete" >
+                    <img src="imgs/BagGame/Espelho.png" class="item espelho" alt="Espelho" >
+                    <img src="imgs/BagGame/Pente.png" class="item pente" alt="Pente" >
                     <img src="imgs/BagGame/paper-ball.png" class="item paper1 paper" alt="">
                     <img src="imgs/BagGame/paper-ball.png" class="item paper2 paper" alt="">
                     <img src="imgs/BagGame/paper-ball.png" class="item paper3 paper" alt="">
@@ -56,14 +60,13 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
-    <audio src="sons/gem-waltz.wav" id="ambientSong"></audio>
+    <audio src="sons/gem-waltz.mp3" id="ambientSong" loop></audio>
+    <script src="js/stars.js"></script>
     <script src="js/MovePlayer.js"></script>
-    <script src="js/Level 1/level1.js"></script> 
+    <script src="js/common.js"></script>
     <script src="js/Level 1/BagGame.js"></script>
+    <script src="js/Level 1/level1.js"></script>
     <script src="js/menu.js"></script>
 </body>
 </html>

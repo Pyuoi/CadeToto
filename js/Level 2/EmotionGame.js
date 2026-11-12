@@ -123,6 +123,7 @@ function iniciarJogoEmocoes(aoConcluir) {
 
         if (chave === r.certa) {
             respondida = true;
+            Estrelas.ganhar('f2-rodada' + (rodada + 1)); // uma estrela por rodada acertada
             botao.classList.add('certa');
             opcoesDiv.querySelectorAll('.opcao').forEach((b) => { b.disabled = true; });
             feedback.textContent = r.acerto;

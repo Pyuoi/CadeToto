@@ -1,111 +1,29 @@
-const fade = document.getElementById('fade')
-const girlbag = document.getElementById('girlbag')
+// ===== Fase 1: a Senhora Flor e a bolsa =====
+// Só a história (as falas) e a configuração da fase ficam aqui.
+// O passeio do Totó, o zoom e a conversa estão no common.js, e o minijogo está no BagGame.js.
 
-const dialogDivbaloon = document.getElementById('girl-div-baloon')
-const dialogText1 = document.getElementById('dialogtext-1')
-const nextbutton = document.getElementById('nextbutton')
+iniciarFase({
+    // Faixa de posição (em %) em que o Totó "encontra" a Senhora Flor
+    gatilho: { min: 31, max: 43 },
 
-const background = document.getElementById('background')
+    fundoZoom: 'imgs/bag-girl-zoom.png',
+    cachorroZoom: { width: '40%', bottom: '5%', left: '12%' },
 
-const DivTutorial = document.getElementById('DivTutorial')
-const CloseTutorial = document.getElementById('CloseTutorial')
+    falasInicio: [
+        'Olá, cachorrinho!',
+        'Você pode me ajudar? Estou procurando alguns objetos que caíram na minha bolsa.',
+        'Será que consegue encontrá-los para mim?'
+    ],
 
-const ambientSong = document.getElementById('ambientSong')
+    iniciarJogo: iniciarJogoBolsa,
 
+    falasFim: [
+        'Muito obrigado, cachorrinho! Com a sua ajuda eu consegui achar meus pertences!',
+        'Inclusive, seu dono estava te procurando, ele acabou de passar aqui.',
+        'Ele foi reto e virou a próxima direita.'
+    ],
 
-CloseTutorial.addEventListener('click', () =>{
-    DivTutorial.style.display = 'none';
-    dog.classList.add('WalkTrue');
-    ambientSong.volume = 0.2;
-    ambientSong.play();
-    
-})
+    fase: 'f1',
 
-
-let canPass = true
-
-function textBallon(text, div){
-    div.textContent = '';
-
-    let letraAtual = 0;
-    nextbutton.style.display = 'none';
-
-    const intervalo = setInterval(() =>{
-        
-        div.textContent += text[letraAtual]
-
-        letraAtual++;
-
-        if(letraAtual >= text.length){
-            clearInterval(intervalo)
-            setTimeout(() =>{
-                nextbutton.style.display = '';
-            }, 50);
-            
-        }
-
-    },50)
-    
-    
-}
-
-let join = false
-
-function dialogos(){
-    
-    arrow_lady.style.display = 'none';
-
-    textBallon('Olá, cachorrinho!', dialogText1)
-    let dialogo = 1
-
-    nextbutton.addEventListener('click', ()=>{
-        if(dialogo == 1){
-            textBallon('Você pode me ajudar? Estou procurando alguns objetos que caíram na minha bolsa.', dialogText1)
-            dialogo++
-        }else if(dialogo == 2){
-            textBallon('Será que consegue encontrá-los para mim?', dialogText1)
-            dialogo++
-            nextbutton.src = './imgs/BagGame/startbutton.png'
-         }else if(dialogo == 3 && dog.classList.contains('lvl1')){
-            BagGame()
-         }
-
-    })
-}
-
-
-function zoom(){
-    fade.classList.add('active')
-    dog.classList.remove('WalkTrue')
-
-    setTimeout(() => {
-        dog.style.width = '40%';
-        dog.style.bottom = '5%';
-        dog.style.left = '12%';
-
-        background.src = './imgs/bag-girl-zoom.png'
-        dialogText1.style.opacity = 1;
-        dialogDivbaloon.style.opacity = 1;
-
-
-        girlbag.style.opacity = 0;
-        dialogos()
-    }, 500)
-}
-
-function JoinArea(){
-
-    const posX = dog.offsetLeft;
-    
-
-    if(posX > 420 && posX < 760 && dog.classList.contains('lvl1') && !join){
-        console.log('ok')
-        join = true;
-        zoom()
-        
-    }
-
-    requestAnimationFrame(JoinArea)
-}
-
-JoinArea()
+    proximaPagina: 'level2.html'
+});

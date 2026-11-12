@@ -109,7 +109,8 @@ function iniciarJogoRotina(aoConcluir) {
         if (passoAtual >= PASSOS.length) return;
 
         if (passo === PASSOS[passoAtual]) {
-            // Acertou: o cartão vai para a vaga
+            // Acertou: o cartão vai para a vaga e a criança ganha uma estrela
+            Estrelas.ganhar('f3-' + passo.id);
             vagas[passoAtual].appendChild(carta);
             vagas[passoAtual].classList.add('preenchida');
             carta.classList.add('colocada');

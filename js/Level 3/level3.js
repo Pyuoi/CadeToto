@@ -23,5 +23,7 @@ iniciarFase({
     ],
 
     // Depois da última fala vai para a tela de créditos
+    fase: 'f3',
+
     proximaPagina: 'FinalLevel/final.html'
 });

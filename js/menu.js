@@ -15,6 +15,7 @@
         '<div class="menu-caixa" role="dialog" aria-label="Menu de pausa">' +
             '<h2>Pausado</h2>' +
             '<button type="button" id="menu-continuar">Continuar</button>' +
+            '<button type="button" id="menu-musica"></button>' +
             '<button type="button" id="menu-reiniciar">Reiniciar fase</button>' +
             '<button type="button" id="menu-lobby">Voltar ao lobby</button>' +
         '</div>';
@@ -37,6 +38,26 @@
         return document.getElementById('ambientSong');
     }
 
+    // --- Música ligada/desligada (a escolha fica salva no navegador) ---
+    const botaoMusica = menu.querySelector('#menu-musica');
+
+    function lerMudo() {
+        try { return localStorage.getItem('toto.mudo') === '1'; } catch (e) { return false; }
+    }
+
+    function aplicarMudo(mudo) {
+        const som = musica();
+        if (som) som.muted = mudo;
+        botaoMusica.textContent = mudo ? 'Música: desligada' : 'Música: ligada';
+        try { localStorage.setItem('toto.mudo', mudo ? '1' : '0'); } catch (e) { /* tudo bem */ }
+    }
+
+    botaoMusica.addEventListener('click', () => {
+        const som = musica();
+        aplicarMudo(!(som && som.muted));
+    });
+    aplicarMudo(lerMudo());
+
     function abrirMenu() {
         pausado = true;
         menu.classList.add('aberto');
@@ -48,7 +69,7 @@
             som.pause();
         }
 
-        document.getElementById('menu-continuar').focus();
+        menu.querySelector('#menu-continuar').focus();
     }
 
     function fecharMenu() {
@@ -59,7 +80,7 @@
         // Só volta a música se ela estava tocando antes de pausar
         const som = musica();
         if (som && musicaEstavaTocando) {
-            som.play();
+            som.play().catch(() => {});
         }
     }
 
@@ -68,15 +89,15 @@
         pausado ? fecharMenu() : abrirMenu();
     });
 
-    document.getElementById('menu-continuar').addEventListener('click', fecharMenu);
+    menu.querySelector('#menu-continuar').addEventListener('click', fecharMenu);
 
     // Reiniciar = recarrega a fase do começo
-    document.getElementById('menu-reiniciar').addEventListener('click', () => {
+    menu.querySelector('#menu-reiniciar').addEventListener('click', () => {
         location.reload();
     });
 
     // Lobby = tela inicial do jogo
-    document.getElementById('menu-lobby').addEventListener('click', () => {
+    menu.querySelector('#menu-lobby').addEventListener('click', () => {
         location.href = 'index.html';
     });
 

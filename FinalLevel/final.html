@@ -1,52 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="finallvl.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Squada+One&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&family=Squada+One&display=swap" rel="stylesheet">
+    <link rel="icon" href="../imgs/favicon.png">
+    <title>Cadê ToTó? - Final</title>
 </head>
-<body>  
+<body data-sem-estrelas>
     <div class="game-board">
         <img src="../imgs/main-background.png" alt="" class="main-background">
-        <div class="main" >
-            <div class="texts active" id="texts">
-                <h1>Cadê ToTô?</h1>
-                <h2>Roteiristas</h2>
-                <p>Gabrielle leite</p>
-                <p>Davi Da Silva</p>
-                <p>Victor de Abreu</p>
-                <h2>Desing Gráfico e Animações</h2>
-                <p>Ana Beatriz Avelino</p>
-                <h2>Desenvolvedor</h2>
-                <p>Miguel Henrique</p>
-                <h1>Agradecimento</h1>
-                <p>Professor João Carlos</p>
-                <p>Escola Firjan SESI</p>
-            </div>
-            <div class="form" id="form">
-                <h1>Qual nota merecemos?</h1>
-                <div class="div-notas" id="div-notas">
-                    <div class="nota"><p>30</p></div>
-                    <div class="nota"><p>60</p></div>
-                    <div class="nota"><p>70</p></div>
-                    <div class="nota"><p>80</p></div>
-                    <div class="nota"><p>90</p></div>
-                    <div class="nota"><p>100</p></div>
-                </div>
-                <button id="btn">Enviar</button>
-                <p id="respost" class="respost">Obrigado Pela Atenção!</p>
+        <div class="main">
 
-            </div>
+            <!-- 1) Recompensa: as estrelas que a criança ganhou -->
+            <section class="tela recompensa" id="tela-estrelas">
+                <h1>Você achou o Totó!</h1>
+                <div class="estrelas-linha" id="estrelas-linha" aria-hidden="true"></div>
+                <p id="estrelas-texto" aria-live="polite"></p>
+                <button type="button" class="botao" id="btn-creditos">Ver os créditos</button>
+            </section>
+
+            <!-- 2) Créditos -->
+            <section class="tela creditos" id="tela-creditos">
+                <div class="texts" id="texts">
+                    <h1>Cadê ToTó?</h1>
+                    <h2>Roteiristas</h2>
+                    <p>Gabrielle Leite</p>
+                    <p>Davi da Silva</p>
+                    <p>Victor de Abreu</p>
+                    <h2>Design Gráfico e Animações</h2>
+                    <p>Ana Beatriz Avelino</p>
+                    <h2>Desenvolvedor</h2>
+                    <p>Miguel Henrique</p>
+                    <h1>Agradecimento</h1>
+                    <p>Professor João Carlos</p>
+                    <p>Escola Firjan SESI</p>
+                </div>
+                <button type="button" class="botao pular" id="btn-pular">Pular</button>
+            </section>
+
+            <!-- 3) Nota -->
+            <section class="tela form" id="form">
+                <h1>Qual nota merecemos?</h1>
+                <div class="div-notas" id="div-notas" role="group" aria-label="Notas">
+                    <button type="button" class="nota" aria-pressed="false">30</button>
+                    <button type="button" class="nota" aria-pressed="false">60</button>
+                    <button type="button" class="nota" aria-pressed="false">70</button>
+                    <button type="button" class="nota" aria-pressed="false">80</button>
+                    <button type="button" class="nota" aria-pressed="false">90</button>
+                    <button type="button" class="nota" aria-pressed="false">100</button>
+                </div>
+                <button type="button" class="botao" id="btn" disabled>Enviar</button>
+                <p id="respost" class="respost" aria-live="polite">Obrigado pela atenção!</p>
+                <button type="button" class="botao secundario" id="btn-de-novo">Jogar de novo</button>
+            </section>
+
         </div>
     </div>
 
+    <script src="../js/stars.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

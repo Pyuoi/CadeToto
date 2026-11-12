@@ -117,7 +117,7 @@ function proximaFala() {
     } else {
         dialogoAtivo = false;
         balao.classList.remove('visivel');
-            aoFimDasFalas();
+        aoFimDasFalas();
     }
 }
 
@@ -145,6 +145,46 @@ function fecharJogo(elemento) {
 }
 
 
+// ---------- Resumo de estrelas no fim da fase ----------
+// A criança vê quantas estrelas ganhou e clica em "Próximo" quando quiser (sem tempo).
+function mostrarResumo(fase, aoContinuar) {
+    const ganhas = Estrelas.daFase(fase);
+    const total = Estrelas.POR_FASE[fase];
+
+    const resumo = document.createElement('div');
+    resumo.className = 'resumo aberto';
+    resumo.setAttribute('role', 'dialog');
+    resumo.setAttribute('aria-label', 'Fase completa');
+
+    let estrelas = '';
+    for (let i = 0; i < total; i++) {
+        estrelas += i < ganhas
+            ? `<span class="brilha" style="animation-delay:${i * 0.15}s">⭐</span>`
+            : '<span class="vazia">⭐</span>';
+    }
+
+    const mensagem = ganhas === total
+        ? 'Você pegou todas as estrelas desta fase!'
+        : 'Você pegou ' + ganhas + ' de ' + total + ' estrelas. Muito bem!';
+
+    resumo.innerHTML =
+        '<div class="resumo-caixa">' +
+            '<h2>Fase completa!</h2>' +
+            '<div class="resumo-estrelas" aria-hidden="true">' + estrelas + '</div>' +
+            '<p>' + mensagem + '</p>' +
+            '<button type="button" class="btn-img"><img src="' + IMG_PROXIMO + '" alt="Próximo"></button>' +
+        '</div>';
+
+    document.querySelector('.game-board').appendChild(resumo);
+    const botao = resumo.querySelector('button');
+    botao.focus({ preventScroll: true });
+    botao.addEventListener('click', () => {
+        resumo.remove();
+        aoContinuar();
+    });
+}
+
+
 // ---------- O fluxo completo de uma fase ----------
 // config = {
 //   gatilho: { min, max },       faixa de posX (em %) onde o Totó "encontra" o personagem
@@ -152,9 +192,21 @@ function fecharJogo(elemento) {
 //   falasInicio: [ ... ],        conversa antes do minijogo
 //   iniciarJogo: function(aoConcluir) {...},   começa o minijogo; chama aoConcluir() quando acabar
 //   falasFim: [ ... ],           conversa depois do minijogo
+//   fase: 'f2',                  id da fase nas estrelas (veja stars.js); mostra o resumo no fim
+//   cachorroZoom: { width, bottom, left },   (opcional) onde o Totó fica no cenário aproximado
 //   proximaPagina: 'level3.html' para onde ir no final
 // }
 function iniciarFase(config) {
+    // O botão "Começar" do tutorial também funciona com o teclado (Tab + Enter)
+    CloseTutorial.setAttribute('role', 'button');
+    CloseTutorial.tabIndex = 0;
+    CloseTutorial.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            CloseTutorial.click();
+        }
+    });
+
     // Fechar o tutorial libera o movimento e começa a música
     // (o navegador só deixa tocar som depois de um clique, por isso é aqui)
     CloseTutorial.addEventListener('click', () => {
@@ -187,9 +239,10 @@ function iniciarFase(config) {
 
             // O Totó fica de frente pro personagem, com as patas no mesmo chão dele
             dog.style.transform = 'scaleX(1)';
-            dog.style.width = '25%';
-            dog.style.bottom = '22.5%';
-            dog.style.left = '14%';
+            const lugar = config.cachorroZoom || { width: '25%', bottom: '22.5%', left: '14%' };
+            dog.style.width = lugar.width;
+            dog.style.bottom = lugar.bottom;
+            dog.style.left = lugar.left;
 
             iniciarDialogo(config.falasInicio, () => {
                 config.iniciarJogo(terminarJogo);
@@ -199,9 +252,11 @@ function iniciarFase(config) {
 
     function terminarJogo() {
         iniciarDialogo(config.falasFim, () => {
-            fazerTransicao(() => {
+            const ir = () => fazerTransicao(() => {
                 window.location.href = config.proximaPagina;
             });
+            if (config.fase) mostrarResumo(config.fase, ir);
+            else ir();
         });
     }
 }
