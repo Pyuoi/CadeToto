@@ -32,14 +32,55 @@ body{
     
 }
 
+/* O Totó parado usa o desenho dog.png. Quando anda (classe "andando", ligada pelo MovePlayer.js),
+   o desenho some e entra a animação de 8 quadros do Dog_andando.png.
+   Os números abaixo (53%, 12.4%...) alinham o cachorrinho andando com o cachorrinho parado. */
 .dogplayer {
     position: absolute;
     width: 20%;
-    height: auto;
+    aspect-ratio: 1536 / 1024;
+    background: url("../imgs/dog.png") center / 100% 100% no-repeat;
     bottom: 15%;
     left: 0%;
     z-index: 1;
+}
 
+.dogplayer::before {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 49.2%;
+    top: 12.4%;
+    width: 53%;
+    aspect-ratio: 340 / 280;
+    transform: translateX(-50%);
+    background: url("../imgs/Dog_andando.png") 0 0 / 800% 100% no-repeat;
+}
+
+.dogplayer.andando {
+    background-image: none;
+}
+
+.dogplayer.andando::before {
+    display: block;
+    animation: andar-cachorro 0.8s steps(1) infinite;
+}
+
+@keyframes andar-cachorro {
+    0%     { background-position-x: 0%; }
+    12.5%  { background-position-x: 14.2857%; }
+    25%    { background-position-x: 28.5714%; }
+    37.5%  { background-position-x: 42.8571%; }
+    50%    { background-position-x: 57.1429%; }
+    62.5%  { background-position-x: 71.4286%; }
+    75%    { background-position-x: 85.7143%; }
+    87.5%  { background-position-x: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dogplayer.andando::before {
+        animation: none;
+    }
 }
 
 .cloud1 {
