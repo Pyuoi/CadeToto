@@ -32,9 +32,13 @@ function move(agora) {
         const direita = keys['w'] || keys['d'] || keys['arrowright'];
         const esquerda = keys['s'] || keys['a'] || keys['arrowleft'];
 
-        if (direita && posX < 85) { posX = Math.min(posX + velocity * dt, 85); dog.style.transform = 'scaleX(1)'; }
-        if (esquerda && posX > -5) { posX = Math.max(posX - velocity * dt, -5); dog.style.transform = 'scaleX(-1)'; }
+        let andando = false;
+        if (direita && posX < 85) { posX = Math.min(posX + velocity * dt, 85); dog.style.transform = 'scaleX(1)'; andando = true; }
+        if (esquerda && posX > -5) { posX = Math.max(posX - velocity * dt, -5); dog.style.transform = 'scaleX(-1)'; andando = true; }
         dog.style.left = posX + '%';
+        dog.classList.toggle('andando', andando); // liga a animação das perninhas
+    } else {
+        dog.classList.remove('andando');
     }
 
     requestAnimationFrame(move);
